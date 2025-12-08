@@ -788,60 +788,6 @@
                                 <textarea class="form-textarea large" id="nextStepsStrategy" placeholder="What needs to happen next?"></textarea>
                             </div>
                         </div>
-
-                        <!-- Lead Rating 0-10 -->
-                        <div class="form-row single">
-                            <div class="lead-rating-section">
-                                <label class="lead-rating-label">Lead Rating</label>
-                                <div class="lead-rating-scale" id="ratingScaleStrategy">
-                                    <div class="rating-option" data-value="0">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_0" value="0">
-                                        <label for="rating_s_0">0</label>
-                                    </div>
-                                    <div class="rating-option" data-value="1">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_1" value="1">
-                                        <label for="rating_s_1">1</label>
-                                    </div>
-                                    <div class="rating-option" data-value="2">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_2" value="2">
-                                        <label for="rating_s_2">2</label>
-                                    </div>
-                                    <div class="rating-option" data-value="3">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_3" value="3">
-                                        <label for="rating_s_3">3</label>
-                                    </div>
-                                    <div class="rating-option" data-value="4">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_4" value="4">
-                                        <label for="rating_s_4">4</label>
-                                    </div>
-                                    <div class="rating-option" data-value="5">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_5" value="5">
-                                        <label for="rating_s_5">5</label>
-                                    </div>
-                                    <div class="rating-option" data-value="6">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_6" value="6">
-                                        <label for="rating_s_6">6</label>
-                                    </div>
-                                    <div class="rating-option" data-value="7">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_7" value="7">
-                                        <label for="rating_s_7">7</label>
-                                    </div>
-                                    <div class="rating-option" data-value="8">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_8" value="8">
-                                        <label for="rating_s_8">8</label>
-                                    </div>
-                                    <div class="rating-option" data-value="9">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_9" value="9">
-                                        <label for="rating_s_9">9</label>
-                                    </div>
-                                    <div class="rating-option" data-value="10">
-                                        <input type="radio" name="lead_rating_strategy" id="rating_s_10" value="10">
-                                        <label for="rating_s_10">10</label>
-                                    </div>
-                                </div>
-                                <div class="rating-display" id="ratingDisplayStrategy"></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -913,19 +859,12 @@
         };
 
         const discoveryRatingRadios = document.querySelectorAll('input[name="lead_rating_discovery"]');
-        const strategyRatingRadios = document.querySelectorAll('input[name="lead_rating_strategy"]');
         const ratingDisplayDiscovery = document.getElementById('ratingDisplayDiscovery');
-        const ratingDisplayStrategy = document.getElementById('ratingDisplayStrategy');
+       
 
         discoveryRatingRadios.forEach(radio => {
             radio.addEventListener('change', () => {
                 ratingDisplayDiscovery.textContent = ratingLabels[radio.value];
-            });
-        });
-
-        strategyRatingRadios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                ratingDisplayStrategy.textContent = ratingLabels[radio.value];
             });
         });
 
@@ -1018,9 +957,7 @@
                     formData.append('info_torben', document.getElementById('infoTorben').value.trim());
                     formData.append('next_steps', document.getElementById('nextStepsStrategy').value.trim());
                     
-                    // Lead rating
-                    const ratingStrategy = document.querySelector('input[name="lead_rating_strategy"]:checked');
-                    formData.append('lead_rating', ratingStrategy ? ratingStrategy.value : '');
+                    
                 }
 
                 const response = await fetch(ZAPIER_WEBHOOK_URL, {
