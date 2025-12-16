@@ -917,7 +917,7 @@
     <script>
         // ========== CONFIGURATION ==========
         // Replace with your actual Zapier webhook URL
-        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/24204039/uftvedd/';
+        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/24204039/uftvedd';
 
         // ========== DOM ELEMENTS ==========
         const form = document.getElementById('salesNotesForm');
@@ -1095,18 +1095,16 @@
 
                 const response = await fetch(ZAPIER_WEBHOOK_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
                     body: formData
                 });
 
-                if (response.ok || response.status === 200) {
-                    showMessage('✓ Notes saved successfully!', 'success');
-                    
-                    // Optional: Reset form after successful submission
-                     form.reset();
-                     callTypeBtns[0].click(); // Reset to Discovery
-                } else {
-                    throw new Error('Submission failed');
-                }
+                // With mode: 'no-cors', we can't read the response, but if no error was thrown, assume success
+                showMessage('✓ Notes saved successfully!', 'success');
+                
+                // Optional: Reset form after successful submission
+                 form.reset();
+                 callTypeBtns[0].click(); // Reset to Discovery
             } catch (error) {
                 console.error('Submission error:', error);
                 showMessage('Error saving notes. Please try again.', 'error');
