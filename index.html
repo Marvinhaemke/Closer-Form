@@ -432,11 +432,13 @@
         }
 
         /* Conditional Sections */
+        .setting-fields,
         .discovery-fields,
         .strategy-fields {
             display: none;
         }
 
+        .setting-fields.active,
         .discovery-fields.active,
         .strategy-fields.active {
             display: block;
@@ -496,6 +498,9 @@
             <form id="salesNotesForm">
                 <!-- Call Type Selector -->
                 <div class="call-type-selector">
+                    <button type="button" class="call-type-btn" data-type="setting">
+                        Setting Call
+                    </button>
                     <button type="button" class="call-type-btn active" data-type="discovery">
                         Discovery Call
                     </button>
@@ -515,6 +520,112 @@
                         <div class="form-group">
                             <label class="form-label">Lead Name</label>
                             <input type="text" class="form-input" id="leadName" placeholder="First and last name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== SETTING CALL FIELDS ==================== -->
+                <div class="setting-fields">
+                    
+                    <!-- Reason Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">Call Reason</h2>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">Reason to book in for a call</label>
+                                <textarea class="form-textarea" id="callReason" placeholder="Why did they book the call?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">Profile</h2>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">Business Owner / Investor</label>
+                                <div class="offer-options">
+                                    <div class="offer-option">
+                                        <input type="radio" name="profile_type" id="profile_owner" value="Business Owner">
+                                        <label for="profile_owner">Business Owner</label>
+                                    </div>
+                                    <div class="offer-option">
+                                        <input type="radio" name="profile_type" id="profile_investor" value="Investor">
+                                        <label for="profile_investor">Investor</label>
+                                    </div>
+                                    <div class="offer-option">
+                                        <input type="radio" name="profile_type" id="profile_both" value="Both">
+                                        <label for="profile_both">Both</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">What Business</label>
+                                <textarea class="form-textarea" id="whatBusiness" placeholder="Describe their main business..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">More Business</label>
+                                <textarea class="form-textarea" id="moreBusiness" placeholder="Any additional businesses or ventures..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">Total Structure</label>
+                                <textarea class="form-textarea" id="structureGesamt" placeholder="Overall structure of all entities..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financials Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">Financials</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Revenue</label>
+                                <input type="text" class="form-input" id="settingRevenue" placeholder="e.g. $500k/year">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Profit</label>
+                                <input type="text" class="form-input" id="settingProfit" placeholder="e.g. $150k/year">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Taxes</label>
+                                <input type="text" class="form-input" id="settingTaxes" placeholder="e.g. $80k paid">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Liquid Money</label>
+                                <input type="text" class="form-input" id="liquidMoney" placeholder="e.g. $100k available">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decision Maker Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">Qualification</h2>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label class="form-label">Decision Maker</label>
+                                <div class="offer-options">
+                                    <div class="offer-option">
+                                        <input type="radio" name="decision_maker" id="dm_yes" value="Yes">
+                                        <label for="dm_yes">Yes</label>
+                                    </div>
+                                    <div class="offer-option">
+                                        <input type="radio" name="decision_maker" id="dm_no" value="No">
+                                        <label for="dm_no">No</label>
+                                    </div>
+                                    <div class="offer-option">
+                                        <input type="radio" name="decision_maker" id="dm_partial" value="Partial">
+                                        <label for="dm_partial">Partial</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -567,14 +678,14 @@
                                     Revenue
                                     <span class="hint">monthly / yearly / estimated</span>
                                 </label>
-                                <input type="text" class="form-input" id="revenue" placeholder="e.g. £500k/year">
+                                <input type="text" class="form-input" id="revenue" placeholder="e.g. $500k/year">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">
                                     Profit
                                     <span class="hint">yearly</span>
                                 </label>
-                                <input type="text" class="form-input" id="profit" placeholder="e.g. £150k/year">
+                                <input type="text" class="form-input" id="profit" placeholder="e.g. $150k/year">
                             </div>
                         </div>
                         <div class="form-row">
@@ -583,14 +694,14 @@
                                     Taxes
                                     <span class="hint">paid / outstanding / too high / unclear</span>
                                 </label>
-                                <input type="text" class="form-input" id="taxes" placeholder="e.g. £80k paid, too high">
+                                <input type="text" class="form-input" id="taxes" placeholder="e.g. $80k paid, too high">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">
                                     Liquidity
                                     <span class="hint">current / 3 months / 6 months</span>
                                 </label>
-                                <input type="text" class="form-input" id="liquidity" placeholder="e.g. £100k available">
+                                <input type="text" class="form-input" id="liquidity" placeholder="e.g. $100k available">
                             </div>
                         </div>
                         <div class="form-row single">
@@ -635,11 +746,11 @@
                                 <label class="form-label">Offer</label>
                                 <div class="offer-options">
                                     <div class="offer-option">
-                                        <input type="radio" name="offer_discovery" id="offer_60k" value="60k">
+                                        <input type="radio" name="offer_discovery" id="offer_60k" value="60000">
                                         <label for="offer_60k">60k</label>
                                     </div>
                                     <div class="offer-option">
-                                        <input type="radio" name="offer_discovery" id="offer_200k" value="200k">
+                                        <input type="radio" name="offer_discovery" id="offer_200k" value="200000">
                                         <label for="offer_200k">200k</label>
                                     </div>
                                     <div class="offer-option">
@@ -732,11 +843,11 @@
                                 <label class="form-label">Which Offer</label>
                                 <div class="offer-options">
                                     <div class="offer-option">
-                                        <input type="radio" name="offer_strategy" id="strat_offer_60k" value="60k">
+                                        <input type="radio" name="offer_strategy" id="strat_offer_60k" value="60000">
                                         <label for="strat_offer_60k">60k</label>
                                     </div>
                                     <div class="offer-option">
-                                        <input type="radio" name="offer_strategy" id="strat_offer_200k" value="200k">
+                                        <input type="radio" name="offer_strategy" id="strat_offer_200k" value="200000">
                                         <label for="strat_offer_200k">200k</label>
                                     </div>
                                     <div class="offer-option">
@@ -788,6 +899,7 @@
                                 <textarea class="form-textarea large" id="nextStepsStrategy" placeholder="What needs to happen next?"></textarea>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -805,13 +917,14 @@
     <script>
         // ========== CONFIGURATION ==========
         // Replace with your actual Zapier webhook URL
-        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/24204039/uftvedd/';
+        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/24204039/uftvedd';
 
         // ========== DOM ELEMENTS ==========
         const form = document.getElementById('salesNotesForm');
         const formMessage = document.getElementById('formMessage');
         const submitButton = form.querySelector('.submit-btn');
         const callTypeBtns = document.querySelectorAll('.call-type-btn');
+        const settingFields = document.querySelector('.setting-fields');
         const discoveryFields = document.querySelector('.discovery-fields');
         const strategyFields = document.querySelector('.strategy-fields');
 
@@ -860,7 +973,6 @@
 
         const discoveryRatingRadios = document.querySelectorAll('input[name="lead_rating_discovery"]');
         const ratingDisplayDiscovery = document.getElementById('ratingDisplayDiscovery');
-       
 
         discoveryRatingRadios.forEach(radio => {
             radio.addEventListener('change', () => {
@@ -878,11 +990,17 @@
                 // Toggle field visibility
                 currentCallType = btn.dataset.type;
                 
-                if (currentCallType === 'discovery') {
+                // Hide all sections first
+                settingFields.classList.remove('active');
+                discoveryFields.classList.remove('active');
+                strategyFields.classList.remove('active');
+                
+                // Show the selected section
+                if (currentCallType === 'setting') {
+                    settingFields.classList.add('active');
+                } else if (currentCallType === 'discovery') {
                     discoveryFields.classList.add('active');
-                    strategyFields.classList.remove('active');
                 } else {
-                    discoveryFields.classList.remove('active');
                     strategyFields.classList.add('active');
                 }
             });
@@ -917,7 +1035,24 @@
                 formData.append('timestamp', new Date().toISOString());
                 formData.append('source', 'closer-form');
 
-                if (currentCallType === 'discovery') {
+                if (currentCallType === 'setting') {
+                    // Setting Call specific fields
+                    formData.append('call_reason', document.getElementById('callReason').value.trim());
+                    
+                    const profileType = document.querySelector('input[name="profile_type"]:checked');
+                    formData.append('profile_type', profileType ? profileType.value : '');
+                    
+                    formData.append('what_business', document.getElementById('whatBusiness').value.trim());
+                    formData.append('more_business', document.getElementById('moreBusiness').value.trim());
+                    formData.append('total_structure', document.getElementById('structureGesamt').value.trim());
+                    formData.append('revenue', document.getElementById('settingRevenue').value.trim());
+                    formData.append('profit', document.getElementById('settingProfit').value.trim());
+                    formData.append('taxes', document.getElementById('settingTaxes').value.trim());
+                    formData.append('liquid_money', document.getElementById('liquidMoney').value.trim());
+                    
+                    const decisionMaker = document.querySelector('input[name="decision_maker"]:checked');
+                    formData.append('decision_maker', decisionMaker ? decisionMaker.value : '');
+                } else if (currentCallType === 'discovery') {
                     // Discovery Call specific fields
                     formData.append('business', document.getElementById('business').value.trim());
                     formData.append('background', document.getElementById('background').value.trim());
@@ -956,8 +1091,6 @@
                     formData.append('decision', document.getElementById('decision').value.trim());
                     formData.append('info_torben', document.getElementById('infoTorben').value.trim());
                     formData.append('next_steps', document.getElementById('nextStepsStrategy').value.trim());
-                    
-                    
                 }
 
                 const response = await fetch(ZAPIER_WEBHOOK_URL, {
@@ -969,8 +1102,8 @@
                     showMessage('✓ Notes saved successfully!', 'success');
                     
                     // Optional: Reset form after successful submission
-                    form.reset();
-                    callTypeBtns[0].click(); // Reset to Discovery
+                     form.reset();
+                     callTypeBtns[0].click(); // Reset to Discovery
                 } else {
                     throw new Error('Submission failed');
                 }
